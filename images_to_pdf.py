@@ -31,15 +31,15 @@ def images_to_pdf(image_files, parent_directory, pdf_filename):
         if file_extension == "svg":
             drawing = svg2rlg(image_filename)
             return drawing, drawing.width, drawing.height
-        else:
-            drawing = Image.open(image_filename)
-            return drawing, drawing.size[0], drawing.size[1]
+            
+        drawing = Image.open(image_filename)
+        return drawing, drawing.size[0], drawing.size[1]
 
     try:
         print(f"{pdf_filename} : Processing sheets.")
 
         image_files.sort(key=filename_to_int)
-        if (image_files[0] == ".DS_Store"):
+        if image_files[0] == ".DS_Store":
             image_files.pop(0)
 
         _, reference_width, reference_height = get_drawing_and_dimensions(
