@@ -86,5 +86,4 @@ if __name__ == "__main__":
     pool.close()
     pool.join()
     stop = timeit.default_timer()
-    print(f"Time: {
-          stop - start} seconds. Total PDFs: {pdf_count}. Total files: {total_files}")
+    print(f"Time: {stop - start} seconds. Total PDFs: {pdf_count}. Total files: {total_files}")
