@@ -1,22 +1,25 @@
+"""Script for merging multiple images into a single PDF file using multiprocessing Pool"""
 import os
 import sys
 import shutil
 import timeit
 from re import search
-from PIL import Image
 from multiprocessing import Pool
+from PIL import Image
 
 from reportlab.pdfgen import canvas
 from reportlab.graphics import renderPDF
 from svglib.svglib import svg2rlg
-from reportlab.lib.pagesizes import letter
 
 
 def images_to_pdf(image_files, parent_directory, pdf_filename):
+    """
+    Function for merging multiple images into one PDF file.
+    """
     def parse_filename(f):
-        regex = search("^(score_)?(\d*).*\.(\w+)$", f)
-        num = regex.group(2)
-        extension = regex.group(3)
+        file_regex = search("^(score_)?(\d*).*\.(\w+)$", f)
+        num = file_regex.group(2)
+        extension = file_regex.group(3)
         return num, extension
 
     def filename_to_int(f):
